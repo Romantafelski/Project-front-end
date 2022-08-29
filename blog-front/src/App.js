@@ -4,11 +4,12 @@ import {useState, useEffect} from "react"
 
 const App = () => {
   
-  let [newMeme, setMeme] = useState("")
+  let [meme, setMeme] = useState([])
+  let [newPost, setPost] = useState("")
 
   const handleMemeCreation = (event) => {
     event.preventDefault()
-    axios.post("https://project-3-front.herokuapp.com/", 
+    axios.post(`https://project-3-front.herokuapp.com/Schema/${meme._id}`, 
     {
       meme: newMeme
     }
