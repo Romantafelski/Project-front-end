@@ -29,7 +29,7 @@ app.get('/Schema/:id', (req, res) => {
   })
   
 
-  app.pos('/Schema', (req, res) => {
+  app.post('/Schema', (req, res) => {
     Blog.create(req.body, (err, createdBlog)=>{
       res.json(createdBlog)
     })
