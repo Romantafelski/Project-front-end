@@ -8,12 +8,12 @@ const App = () => {
 
   const handleMemeCreation = (event) => {
     event.preventDefault()
-    axios.post("https://project-3-front.herokuapp.com/", 
+    axios.post("https://project-3-front.herokuapp.com/Schema", 
     {
       meme: newMeme
     }
     ).then(() => {
-      axios.get("https://project-3-front.herokuapp.com/").then((respons => {
+      axios.get("https://project-3-front.herokuapp.com/Schema").then((response=> {
         setMeme(response.data)
       }))
     })

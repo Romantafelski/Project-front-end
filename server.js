@@ -17,6 +17,8 @@ const PORT = process.env.PORT || 3003;
 
 const MONGODB_URI = process.env.MONGODB_URI;
 
+app.use(express.urlencoded({ extended: false }))
+
 
 mongoose.connect(MONGODB_URI);
 
