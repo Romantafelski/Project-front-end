@@ -8,19 +8,19 @@ const App = () => {
 
   const handleMemeCreation = (event) => {
     event.preventDefault()
-    axios.post("mongodb+srv://romantafelski:<BAlx1lWvh3WeMSF1>@cluster0.bvtgvvk.mongodb.net/?retryWrites=true&w=majority", 
+    axios.post("https://project-3-front.herokuapp.com/", 
     {
       meme: newMeme
     }
     ).then(() => {
-      axios.get("mongodb+srv://romantafelski:<BAlx1lWvh3WeMSF1>@cluster0.bvtgvvk.mongodb.net/?retryWrites=true&w=majority").then((respons => {
+      axios.get("https://project-3-front.herokuapp.com/").then((respons => {
         setMeme(response.data)
       }))
     })
   }
 
   useEffect(() => {
-    axios.get('mongodb+srv://romantafelski:<BAlx1lWvh3WeMSF1>@cluster0.bvtgvvk.mongodb.net/?retryWrites=true&w=majority')
+    axios.get('https://project-3-front.herokuapp.com/')
     .then((response) => {
       setMeme(response.data)
     })
