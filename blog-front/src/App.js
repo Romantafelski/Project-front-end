@@ -27,7 +27,12 @@ const App = () => {
   }, [])
 
   return (
+    <div>
     <h1>Hello World</h1>
+    <form onSubmit={handleMemeCreation}>
+    Meme: <input type="text"/>
+    </form>
+    </div>
   )
 }
 
