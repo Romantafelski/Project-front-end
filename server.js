@@ -22,14 +22,14 @@ mongoose.connect(MONGODB_URI);
 
 
 
-app.get('/Schema/:id', (req, res) => {
+app.get('/:id', (req, res) => {
     Blog.find({}, (err,foundBlog) => {
       res.json(foundBlog)
     })
   })
   
 
-  app.post('/Schema', (req, res) => {
+  app.post('/', (req, res) => {
     Blog.create(req.body, (err, createdBlog)=>{
       res.json(createdBlog)
     })
@@ -37,21 +37,21 @@ app.get('/Schema/:id', (req, res) => {
   
 
 
-  app.get('/Schema', (req, res) => {
+  app.get('/', (req, res) => {
     Blog.find({}, (err,foundBlogs) => {
       res.json(foundBlogs)
     })
   })
   
 
-  app.delete('/Schema/:id', (req, res) => {
+  app.delete('/:id', (req, res) => {
     Blog.findByIdAndRemove(req.params.id, (err, deletedBlog) => {
       res.json(deletedBlog)
     })
   })
   
 
-  app.put('/Schema/:id', (req, res) => {
+  app.put('/:id', (req, res) => {
     Blog.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedBlog) => {
       res.json(updatedBlog)
     })
