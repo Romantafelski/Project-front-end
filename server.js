@@ -15,10 +15,10 @@ const PORT = process.env.PORT || 3003;
 
 
 
-const MONGODB_URI = process.env.UzBueqzPjdzMoWSz;
+const MONGODB_URI = process.env.MONGODB_URI;
 
 
-mongoose.connect(UzBueqzPjdzMoWSz);
+mongoose.connect(MONGODB_URI);
 
 
 
@@ -29,7 +29,7 @@ app.get('/Schema/:id', (req, res) => {
   })
   
 
-  app.post('/Schema', (req, res) => {
+  app.pos('/Schema', (req, res) => {
     Blog.create(req.body, (err, createdBlog)=>{
       res.json(createdBlog)
     })
@@ -59,7 +59,3 @@ app.get('/Schema/:id', (req, res) => {
 
 
 app.listen(process.env.PORT, () => console.log(process.env.PORT));
-
-db.on('error', (err) => console.log(err.message + ' is Mongod not running?'));
-db.on('connected', () => console.log('mongo connected: ', MONGODB_URI));
-db.on('disconnected', () => console.log('mongo disconnected'));
