@@ -8,19 +8,19 @@ const App = () => {
 
   const handleMemeCreation = (event) => {
     event.preventDefault()
-    axios.post("https://cloud.mongodb.com/v2/630cf27486a7d66b617b671f#metrics/replicaSet/630cf2c6edfa1c6c1f06bf48/explorer/front-end-memes/memesCrud/find", 
+    axios.post("mongodb+srv://romantafelski:<BAlx1lWvh3WeMSF1>@cluster0.bvtgvvk.mongodb.net/?retryWrites=true&w=majority", 
     {
       meme: newMeme
     }
     ).then(() => {
-      axios.get("https://cloud.mongodb.com/v2/630cf27486a7d66b617b671f#metrics/replicaSet/630cf2c6edfa1c6c1f06bf48/explorer/front-end-memes/memesCrud/find").then((respons => {
+      axios.get("mongodb+srv://romantafelski:<BAlx1lWvh3WeMSF1>@cluster0.bvtgvvk.mongodb.net/?retryWrites=true&w=majority").then((respons => {
         setMeme(response.data)
       }))
     })
   }
 
   useEffect(() => {
-    axios.get('https://cloud.mongodb.com/v2/630cf27486a7d66b617b671f#metrics/replicaSet/630cf2c6edfa1c6c1f06bf48/explorer/front-end-memes/memesCrud/find')
+    axios.get('mongodb+srv://romantafelski:<BAlx1lWvh3WeMSF1>@cluster0.bvtgvvk.mongodb.net/?retryWrites=true&w=majority')
     .then((response) => {
       setMeme(response.data)
     })
