@@ -2,7 +2,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const Schema = require('../models/Schema.js')
+const Schema = require('./models/Schema.js')
 require('dotenv').config()
 
 const app = express();
