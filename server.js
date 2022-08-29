@@ -15,10 +15,10 @@ const PORT = process.env.PORT || 3003;
 
 
 
-const MONGODB_URI = process.env.MONGODB_URI;
+const MONGODB_URI = process.env.UzBueqzPjdzMoWSz;
 
 
-mongoose.connect(BAlx1lWvh3WeMSF1);
+mongoose.connect(UzBueqzPjdzMoWSz);
 
 
 
