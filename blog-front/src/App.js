@@ -1,25 +1,28 @@
 import logo from './logo.svg';
 import './App.css';
+import {useState, useEffect} from "react"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+  
+  let [newMeme, setMeme] = useState("")
+
+  const handleMemeCreation = (event) => {
+    event.preventDefault()
+    axios.post("https://cloud.mongodb.com/v2/630cf27486a7d66b617b671f#metrics/replicaSet/630cf2c6edfa1c6c1f06bf48/explorer/front-end-memes/memesCrud/find", 
+    {
+      meme: newMeme
+    }
+    ).then(() => {
+      axios.get("https://cloud.mongodb.com/v2/630cf27486a7d66b617b671f#metrics/replicaSet/630cf2c6edfa1c6c1f06bf48/explorer/front-end-memes/memesCrud/find").then((respons => {
+        setMeme(response.data)
+      }))
+    })
+  }
+
+  useEffect(() => {
+    axios.get('https://cloud.mongodb.com/v2/630cf27486a7d66b617b671f#metrics/replicaSet/630cf2c6edfa1c6c1f06bf48/explorer/front-end-memes/memesCrud/find')
+    .then((response) => {
+      setMeme(response.data)
+    })
+  }, [])
 }
-
-export default App;
