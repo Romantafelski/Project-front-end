@@ -24,14 +24,14 @@ const App = () => {
 
   const handleMemeCreation = (event) => {
     event.preventDefault()
-    axios.post(`https://git.heroku.com/project-3-front.git/${memes._id}`, 
+    axios.post(`http://localhost:3000/memes/${memes._id}`, 
     {
       title: newTitle,
       text: newText,
       image: newImage
     }
     ).then(() => {
-      axios.get("https://git.heroku.com/project-3-front.git").then((response=> {
+      axios.get("http://localhost:3000/memes").then((response=> {
         setMeme(response.data)
       }))
     })
@@ -39,28 +39,28 @@ const App = () => {
 
   
   useEffect(() => {
-    axios.get('hhttps://git.heroku.com/project-3-front.git')
+    axios.get('http://localhost:3000/memes')
     .then((response) => {
       setMeme(response.data)
     })
   }, [])
   
   const handleMemesDelete = (memes) => {
-    axios.delete(`https://git.heroku.com/project-3-front.git${memes.id}`).then(() => {
-      axios.get("https://git.heroku.com/project-3-front.git").then((response) => {
+    axios.delete(`http://localhost:3000/memes//${memes.id}`).then(() => {
+      axios.get("http://localhost:3000/memes").then((response) => {
         setMemes(response.data)
       })
     })
   }
 
   const editMemes = (memes) => {
-    axios.put(`https://git.heroku.com/project-3-front.git/${memes._id}`, 
+    axios.put(`http://localhost:3000/memes/${memes._id}`, 
     {
       title: newTitle,
       text: newText,
       image: newImage
     }).then(() => {
-      axios.get("https://git.heroku.com/project-3-front.git").then((response) => {
+      axios.get("http://localhost:3000/memes").then((response) => {
         setMemes(response.data)
       })
     })
