@@ -1,34 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
-import {useState, useEffect} from "react"
+import React from "react";
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Login from './login'
+import Register from './register'
+import Dashboard from "./Dashboard";
+
 
 const App = () => {
-  
-  let [newMeme, setMeme] = useState("")
-
-  const handleMemeCreation = (event) => {
-    event.preventDefault()
-    axios.post("mongodb+srv://romantafelski:<BAlx1lWvh3WeMSF1>@cluster0.bvtgvvk.mongodb.net/?retryWrites=true&w=majority", 
-    {
-      meme: newMeme
-    }
-    ).then(() => {
-      axios.get("mongodb+srv://romantafelski:<BAlx1lWvh3WeMSF1>@cluster0.bvtgvvk.mongodb.net/?retryWrites=true&w=majority").then((respons => {
-        setMeme(response.data)
-      }))
-    })
-  }
-
-  useEffect(() => {
-    axios.get('mongodb+srv://romantafelski:<BAlx1lWvh3WeMSF1>@cluster0.bvtgvvk.mongodb.net/?retryWrites=true&w=majority')
-    .then((response) => {
-      setMeme(response.data)
-    })
-  }, [])
-
-  return (
-    <h1>Hello World</h1>
-  )
+    return (
+        <div>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/login" element={<Login/>} />
+                    <Route path="/register" element={<Register/>} />
+                    <Route path="/Dashboard" element={<Dashboard/>} />
+                </Routes>
+            </BrowserRouter>
+        </div>
+    )
 }
 
 export default App
