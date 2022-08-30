@@ -4,24 +4,24 @@ import {useState, useEffect} from "react"
 
 const App = () => {
   
-  let [meme, setMeme] = useState([])
+  let [memes, setMemes] = useState([])
   let [newPost, setPost] = useState("")
 
   const handleMemeCreation = (event) => {
     event.preventDefault()
-    axios.post(`https://project-3-front.herokuapp.com/Schema/${meme._id}`, 
+    axios.post(`https://project-3-front.herokuapp.com/memes/${memes._id}`, 
     {
       meme: newMeme
     }
     ).then(() => {
-      axios.get("https://project-3-front.herokuapp.com/").then((response=> {
+      axios.get("https://project-3-front.herokuapp.com/memes").then((response=> {
         setMeme(response.data)
       }))
     })
   }
 
   useEffect(() => {
-    axios.get('https://project-3-front.herokuapp.com/')
+    axios.get('https://project-3-front.herokuapp.com/memes')
     .then((response) => {
       setMeme(response.data)
     })
