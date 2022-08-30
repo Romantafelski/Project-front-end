@@ -10,7 +10,7 @@ const App = () => {
   let [newText,setNewText] = useState("")
   let [newImage, setNewImage] = useState("")
 
-  handleChangeTitle = (event) => {
+  handleTitleChange = (event) => {
     setNewTitle(event.target.value)
   }
 
@@ -70,10 +70,32 @@ const App = () => {
     <div>
     <h1>Hello World</h1>
     <form onSubmit={handleMemeCreation}>
-    Title: <input type="text"/>
-    Text: <input type="text"/>
-    Image: <input type="text"/>
+    Title: <input type="text" onChange={handleTitleChange}/>
+    Text: <input type="text" onChange={handleTextChange}/><br/>
+    Image: <input type="text" onChange={handleImageChange}/><br/>
+    <input type="submit" value="submit Meme"/>
     </form>
+    {memes.map((memes) => {
+      return (
+        <div>
+          <h1>memes.title</h1>
+          <button onClick={(event) => {
+            handleMemesDelete(memes)
+          }}>Delete</button>
+          <details>
+            <div>
+              <form onSubmit={() => {{editMemes(memes)}}}>
+              Title: <input type="text" onKeyUp={handleTitleChange}/>
+              Text: <input type="text" onKeyUp={handleTextChange}/><br/>
+              Image: <input type="text" onKeyUpe={handleImageChange}/><br/>
+    <input type="submit" value="submit changes"/>
+              </form>
+            </div>
+          </details>
+        </div>
+        
+      )
+    })}
     </div>
   )
 }

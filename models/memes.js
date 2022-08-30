@@ -1,7 +1,9 @@
 const mongoose = require("mongoose")
 
 const frontSchema = new mongoose.Schema ({
-    meme: string
+    title: String,
+    text: String,
+    image: String
 })
 
 const Schema = mongoose.model("Schema", frontSchema)
