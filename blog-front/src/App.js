@@ -6,7 +6,7 @@ import axios from 'axios';
 const App = () => {
   
   let [memes, setMemes] = useState([])
-  let [newTitle, setTitle] = useState("")
+  let [newTitle, setNewTitle] = useState("")
   let [newText,setNewText] = useState("")
   let [newImage, setNewImage] = useState("")
 
@@ -24,14 +24,14 @@ const App = () => {
 
   const handleMemeCreation = (event) => {
     event.preventDefault()
-    axios.post(`https://project-3-front.herokuapp.com/memes/${memes._id}`, 
+    axios.post(`https://project-3-front.herokuapp.com/${memes._id}`, 
     {
       title: newTitle,
       text: newText,
       image: newImage
     }
     ).then(() => {
-      axios.get("https://project-3-front.herokuapp.com/memes").then((response=> {
+      axios.get("https://project-3-front.herokuapp.com").then((response=> {
         setMeme(response.data)
       }))
     })
@@ -39,15 +39,15 @@ const App = () => {
 
   
   useEffect(() => {
-    axios.get('https://project-3-front.herokuapp.com/memes')
+    axios.get('https://project-3-front.herokuapp.com')
     .then((response) => {
       setMeme(response.data)
     })
   }, [])
   
   const handleMemesDelete = (memes) => {
-    axios.delete(`https://project-3-front.herokuapp.com/memes${memes.id}`).then(() => {
-      axios.get("https://project-3-front.herokuapp.com/memes").then((response) => {
+    axios.delete(`https://project-3-front.herokuapp.com/${memes.id}`).then(() => {
+      axios.get("https://project-3-front.herokuapp.com").then((response) => {
         setMemes(response.data)
       })
     })
@@ -60,7 +60,7 @@ const App = () => {
       text: newText,
       image: newImage
     }).then(() => {
-      axios.get("https://project-3-front.herokuapp.com/memes").then((response) => {
+      axios.get("https://project-3-front.herokuapp.com").then((response) => {
         setMemes(response.data)
       })
     })
@@ -85,10 +85,10 @@ const App = () => {
           <details>
             <div>
               <form onSubmit={() => {{editMemes(memes)}}}>
-              Title: <input type="text" onKeyUp={handleTitleChange}/>
-              Text: <input type="text" onKeyUp={handleTextChange}/><br/>
-              Image: <input type="text" onKeyUpe={handleImageChange}/><br/>
-    <input type="submit" value="submit changes"/>
+                Title: <input type="text" onKeyUp={handleTitleChange}/>
+                Text: <input type="text" onKeyUp={handleTextChange}/><br/>
+                Image: <input type="text" onKeyUpe={handleImageChange}/><br/>
+                <input type="submit" value="submit changes"/>
               </form>
             </div>
           </details>
