@@ -21,7 +21,7 @@ const App = () => {
   }
 
   useEffect(() => {
-    axios.get('https://project-3-front.herokuapp.com/memes')
+    axios.get('https://project-3-front.herokuapp.com/')
     .then((response) => {
       setMeme(response.data)
     })
