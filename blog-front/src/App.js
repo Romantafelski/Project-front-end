@@ -1,8 +1,8 @@
-import logo from './logo.svg';
+
 import './App.css';
 import {useState, useEffect} from "react"
 import axios from 'axios';
-
+const Schema = require("./models/memes")
 const App = () => {
   
   let [memes, setMemes] = useState([])
