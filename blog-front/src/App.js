@@ -1,7 +1,9 @@
 
+
 import './App.css';
 import {useState, useEffect} from "react"
 import axios from 'axios';
+const Schema = require("./models/memes")
 const App = () => {
   
   let [memes, setMemes] = useState([])
@@ -11,7 +13,6 @@ const App = () => {
 
   handleTitleChange = (event) => {
     setNewTitle(event.target.value)
-    console.log(typeof(data))
   }
 
   handleTextChange = (event) => {
