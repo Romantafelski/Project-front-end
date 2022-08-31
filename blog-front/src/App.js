@@ -34,7 +34,7 @@ const App = () => {
       image: newImage
     }
     ).then(() => {
-      axios.get("http://localhost:3000/meme").then((response=> {
+      axios.get("http://localhost:3000/memes").then((response=> {
         setMemes(response.data)
       }))
     })
