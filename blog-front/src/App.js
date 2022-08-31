@@ -3,7 +3,6 @@
 import './App.css';
 import {useState, useEffect} from "react"
 import axios from 'axios';
-const Schema = require("./models/memes")
 const App = () => {
   
   let [memes, setMemes] = useState([])
@@ -11,15 +10,15 @@ const App = () => {
   let [newText,setNewText] = useState("")
   let [newImage, setNewImage] = useState("")
 
-  handleTitleChange = (event) => {
+  const handleTitleChange = (event) => {
     setNewTitle(event.target.value)
   }
 
-  handleTextChange = (event) => {
+  const handleTextChange = (event) => {
     setNewText(event.target.value)
   }
 
-    handleImageChange = (event) => {      
+  const handleImageChange = (event) => {      
       setNewImage(event.target.value)
     }
 
@@ -33,7 +32,7 @@ const App = () => {
     }
     ).then(() => {
       axios.get("http://localhost:3000/memes").then((response=> {
-        setMeme(response.data)
+        setMemes(response.data)
       }))
     })
   }
@@ -47,7 +46,7 @@ const App = () => {
   }, [])
   
   const handleMemesDelete = (memes) => {
-    axios.delete(`http://localhost:3000/memes//${memes.id}`).then(() => {
+    axios.delete(`http://localhost:3000/memes//${memes._id}`).then(() => {
       axios.get("http://localhost:3000/memes").then((response) => {
         setMemes(response.data)
       })

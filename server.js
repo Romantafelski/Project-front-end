@@ -11,50 +11,55 @@ app.use(express.json())
 app.use(cors())
 
 
+const PORT = process.env.PORT || 3003;
+
+
+app.use(express.urlencoded({ extended: false }))
+
+
+
 const MONGODB_URI = process.env.MONGODB_URI;
 
 mongoose.connect(MONGODB_URI);
 mongoose.connection.once("open", () => {
-  console.log("Mongod is connected")
+  console.log("It is working")
 })
 
 
 
-
 app.get('/:id', (req, res) => {
-    Schema.find({}, (err,foundBlog) => {
-      res.json(foundBlog)
+    Schema.find({}, (err,data) => {
+      res.json(data)
     })
   })
-
-
   
+
   app.post('/', (req, res) => {
-    Schema.create(req.body, (err, createdBlog)=>{
-      res.json(createdBlog)
+    Schema.create(req.body, (err, data)=>{
+      res.json(data)
     })
   })
-
+  
 
 
   app.get('/', (req, res) => {
-    Schema.find({}, (err,foundBlogs) => {
-      res.json(foundBlogs)
+    Schema.find({}, (err,data) => {
+      res.json(data)
     })
   })
-
-
   
+
   app.delete('/:id', (req, res) => {
-    Schema.findByIdAndRemove(req.params.id, (err, deletedBlog) => {
-      res.json(deletedBlog)
+    Schema.findByIdAndRemove(req.params.id, (err, data) => {
+      res.json(data)
     })
   })
+  
 
-
- 
   app.put('/:id', (req, res) => {
-    Sche.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedBlog) => {
-      res.json(updatedBlog)
+    Sche.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, data) => {
+      res.json(data)
     })
   })
+
+app.listen(process.env.PORT, () => console.log(process.env.PORT));
