@@ -48,7 +48,7 @@ const App = () => {
   }, [])
   
   const handleMemesDelete = (memes) => {
-    axios.delete(`http://localhost:3000/memes//${memes._id}`).then(() => {
+    axios.delete(`http://localhost:3000/memes/${memes._id}`).then(() => {
       axios.get("http://localhost:3000/memes").then((response) => {
         setMemes(response.data)
       })
