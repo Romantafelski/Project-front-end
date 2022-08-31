@@ -41,7 +41,7 @@ const App = () => {
   useEffect(() => {
     axios.get('http://localhost:3000/memes')
     .then((response) => {
-      setMeme(response.data)
+      setMemes(response.data)
     })
   }, [])
   
@@ -73,7 +73,7 @@ const App = () => {
     Title: <input type="text" onChange={handleTitleChange}/>
     Text: <input type="text" onChange={handleTextChange}/><br/>
     Image: <input type="text" onChange={handleImageChange}/><br/>
-    <input type="submit" value="submit Meme"/>
+    <input type="submit" value="Submit Meme"/>
     </form>
     {memes.map((memes) => {
       return (
