@@ -3,6 +3,7 @@
 import './App.css';
 import {useState, useEffect} from "react"
 import axios from 'axios';
+require('dotenv').config()
 
 
 const App = () => {

@@ -26,7 +26,7 @@ mongoose.connect(
     useNewUrlParser: true,
     useUnifiedTopology: true,
   }
-);;
+);
 mongoose.connection.once("open", () => {
   console.log("It is working")
 })
