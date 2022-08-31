@@ -57,7 +57,7 @@ app.get('/:id', (req, res) => {
   
 
   app.put('/:id', (req, res) => {
-    Sche.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, data) => {
+    Schema.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, data) => {
       res.json(data)
     })
   })
