@@ -2,7 +2,6 @@
 import './App.css';
 import {useState, useEffect} from "react"
 import axios from 'axios';
-
 const App = () => {
   
   let [memes, setMemes] = useState([])
@@ -10,16 +9,16 @@ const App = () => {
   let [newText,setNewText] = useState("")
   let [newImage, setNewImage] = useState("")
 
-  const handleTitleChange = (event) => {
+  handleTitleChange = (event) => {
     setNewTitle(event.target.value)
     console.log(typeof(data))
   }
 
-  const handleTextChange = (event) => {
+  handleTextChange = (event) => {
     setNewText(event.target.value)
   }
 
-    const handleImageChange = (event) => {      
+    handleImageChange = (event) => {      
       setNewImage(event.target.value)
     }
 
@@ -33,7 +32,7 @@ const App = () => {
     }
     ).then(() => {
       axios.get("http://localhost:3000/memes").then((response=> {
-        setMemes(response.data)
+        setMeme(response.data)
       }))
     })
   }
@@ -42,12 +41,12 @@ const App = () => {
   useEffect(() => {
     axios.get('http://localhost:3000/memes')
     .then((response) => {
-      setMemes(response.data)
+      setMeme(response.data)
     })
   }, [])
   
-  const handleMemesDelete = (books) => {
-    axios.delete(`http://localhost:3000/memes/${memes._id}`).then(() => {
+  const handleMemesDelete = (memes) => {
+    axios.delete(`http://localhost:3000/memes//${memes.id}`).then(() => {
       axios.get("http://localhost:3000/memes").then((response) => {
         setMemes(response.data)
       })
