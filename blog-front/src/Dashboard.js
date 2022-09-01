@@ -196,7 +196,7 @@ const Dashboard = () => {
                                 <div className="card__footer">
 
                                     <div className="user">
-                                        <img src="https://i.pravatar.cc/40?img=1" alt="user__image" className="user__image" />
+                                        {/* <img src="https://i.pravatar.cc/40?img=1" alt="user__image" className="user__image" /> */}
                                         <div className="user__info">
                                             <h5>Ford Ranger</h5>
                                             <small>10mins ago</small>
