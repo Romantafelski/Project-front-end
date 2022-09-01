@@ -23,7 +23,7 @@ const App = () => {
 
   async function registerUser(event) {
     event.preventDefault()
-    const response = await fetch('https://shrouded-journey-37658.herokuapp.com/blogs', {
+    const response = await fetch('https://pacific-savannah-73208.herokuapp.com/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -51,37 +51,37 @@ const App = () => {
 
   const handleNewPostFormSubmit = (event) => {
     event.preventDefault()
-    axios.post('https://shrouded-journey-37658.herokuapp.com/blogs', {
+    axios.post('https://pacific-savannah-73208.herokuapp.com/', {
       title: newTitle,
       text: newText
     }).then(() => {
-      axios.get('https://shrouded-journey-37658.herokuapp.com/blogs').then((response) => {
+      axios.get('https://pacific-savannah-73208.herokuapp.com/').then((response) => {
         setAllPost(response.data)
       })
     })
   }
 
   useEffect(() => {
-    axios.get('https://shrouded-journey-37658.herokuapp.com/blogs').then((response) => {
+    axios.get('https://pacific-savannah-73208.herokuapp.com/').then((response) => {
       setAllPost(response.data)
     })
   })
 
   const handleDelete = (postData) => {
-    axios.delete(`https://shrouded-journey-37658.herokuapp.com/blogs/${postData._id}`).then((response) => {
+    axios.delete(`https://pacific-savannah-73208.herokuapp.com/${postData._id}`).then((response) => {
       setAllPost(response.data)
     })
   }
 
   const updatePost = (e, post) => {
     e.preventDefault()
-    axios.put(`https://shrouded-journey-37658.herokuapp.com/blogs/${post._id}`,
+    axios.put(`https://pacific-savannah-73208.herokuapp.com/${post._id}`,
       {
         title: newTitle,
         text: newText
 
       }).then(() => {
-        axios.get('https://shrouded-journey-37658.herokuapp.com/blogs').then((response) => {
+        axios.get('https://pacific-savannah-73208.herokuapp.com/').then((response) => {
 
           setAllPost(response.data)
         })
