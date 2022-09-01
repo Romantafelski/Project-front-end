@@ -15,7 +15,7 @@ const App = () => {
 
   async function registerUser(event) {
     event.preventDefault()
-    const response = await fetch('https://pacific-savannah-73208.herokuapp.com/', {
+    const response = await fetch('https://pacific-savannah-73208.herokuapp.com/api/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
