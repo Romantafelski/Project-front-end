@@ -34,7 +34,7 @@ app.get('https://project-3-front.herokuapp.com/:id', (req, res) => {
   })
   
 
-  app.post('https://project-3-front.herokuapp.com/', (req, res) => {
+  app.post('https://project-3-front.herokuapp.com', (req, res) => {
     Schema.create(req.body, (err, data)=>{
       res.json(data)
     })
@@ -42,7 +42,7 @@ app.get('https://project-3-front.herokuapp.com/:id', (req, res) => {
   
 
 
-  app.get('https://project-3-front.herokuapp.com/', (req, res) => {
+  app.get('https://project-3-front.herokuapp.com', (req, res) => {
     Schema.find({}, (err,data) => {
       res.json(data)
     })
