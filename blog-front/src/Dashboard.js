@@ -32,11 +32,20 @@ const Dashboard = () => {
 
     const [newTitle, setTitle] = useState('')
     const [newText, setText] = useState('')
+    const [newImage, setImage] = useState('')
     const [allPosts, setAllPost] = useState([])
     const [open, setOpen] = React.useState(false);
+    const [openEdit, setOpenEdit] = React.useState(false);
+    const [openDelete, setOpenDelete] = React.useState(false);
 
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
+    const handleOpenEdit = () => setOpenEdit(true);
+    const handleCloseEdit = () => setOpenEdit(false);
+
+    const handleOpenDelete = () => setOpenEdit(true);
+    const handleCloseDelete = () => setOpenEdit(false);
 
     const handleNewTitleChange = (event) => {
         setTitle(event.target.value);
@@ -44,6 +53,9 @@ const Dashboard = () => {
 
     const handleNewTextChange = (event) => {
         setText(event.target.value)
+    }
+    const handleNewImageChange = (event) => {
+        setImage(event.target.value)
     }
 
 
@@ -90,77 +102,125 @@ const Dashboard = () => {
     return (
         <div>
             <div>
-                <Button onClick={handleOpen}>Create Post</Button>
-                <Modal
-                    open={open}
-                    onClose={handleClose}
-                    aria-labelledby="modal-modal-title"
-                    aria-describedby="modal-modal-description"
-                >
-                    <Box sx={style}>
-                        <Typography id="modal-modal-title" variant="h6" component="h2">
-                            Make a blog post
-                        </Typography>
-                        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                        <Form onSubmit={handleNewPostFormSubmit}>
-                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                        <Form.Label>Title</Form.Label><br />
-                        <Form.Control type="text" onChange={e => setTitle(e.target.value)} value={newTitle} placeholder="Title" />
-                    </Form.Group>
-                    <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                        <Form.Label>Text</Form.Label><br />
-                        <Form.Control as="textarea" rows={3} onChange={e => setText(e.target.value)} value={newText} placeholder="text" />
-                    </Form.Group>
-                    <input type="submit" value="Create Post" />
-                </Form>
-                        </Typography>
-                    </Box>
-                </Modal>
+                <ul>
+                    <Button onClick={handleOpen}>Create Post</Button>
+                    <Modal
+                        open={open}
+                        onClose={handleClose}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                    >
+                        <Box sx={style}>
+                            <Typography id="modal-modal-title" variant="h6" component="h2">
+                                Make a blog post
+                            </Typography>
+                            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                                <Form onSubmit={handleNewPostFormSubmit}>
+                                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                        <Form.Label>image</Form.Label><br />
+                                        <Form.Control type="text" onChange={e => setImage(e.target.value)} value={newImage} placeholder="Title" />
+                                    </Form.Group>
+                                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                        <Form.Label>Title</Form.Label><br />
+                                        <Form.Control type="text" onChange={e => setTitle(e.target.value)} value={newTitle} placeholder="Title" />
+                                    </Form.Group>
+                                    <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                        <Form.Label>Text</Form.Label><br />
+                                        <Form.Control as="textarea" rows={3} onChange={e => setText(e.target.value)} value={newText} placeholder="text" />
+                                    </Form.Group>
+                                    <input type="submit" value="Create Post" />
+                                </Form>
+                            </Typography>
+                        </Box>
+                    </Modal>
+                </ul>
             </div>
             <section>
             </section>
             <h1>Personal Blog Page</h1>
-            <Container maxWidth="lg">
-                {allPosts.map((post) => {
-                    return (
+            <p>Mern Stack Web Page</p>
+            {allPosts.map((post) => {
+                return (
+                    <>
+                        <div className="container">
+                            <div className="card">
+                                <div className="card__header">
+                                    <img src="https://source.unsplash.com/600x400/?computer" alt="card__image" className="card__image" width="600" />
+                                </div>
+                                <div className="card__body">
+                                    <span className="tag tag-red">Blog Post</span>
+                                    <h4>{post.title}</h4>
+                                    <p>{post.text}</p>
+                                </div>
+                                <div>
+
+                                    <Button size="small" onClick={handleOpenEdit}>edit</Button>
+                                    <Modal
+                                        open={openEdit}
+                                        onClose={handleCloseEdit}
+                                        aria-labelledby="modal-modal-title"
+                                        aria-describedby="modal-modal-description"
+                                    >
+                                        <Box sx={style}>
+                                            <Typography id="modal-modal-title" variant="h6" component="h2">
+                                                Edit Post
+                                            </Typography>
+                                            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                                                <form onSubmit={(event) => { updatePost(event, post) }}>
+                                                    <label>Title: <input type="text" defaultValue={post.title} onChange={handleNewTitleChange} /></label><br />
+                                                    <label>Text: <textarea onChange={handleNewTextChange} defaultValue={post.text} placeholder="text"></textarea></label><br />
+                                                    <input type="submit" value="update" />
+                                                </form>
+                                            </Typography>
+                                        </Box>
+                                    </Modal>
+                                    <Button onClick={handleOpenDelete}>Delete</Button>
+                                    <Modal
+                                        open={openDelete}
+                                        onClose={handleCloseDelete}
+                                        aria-labelledby="modal-modal-title"
+                                        aria-describedby="modal-modal-description"
+                                    >
+                                        <Box sx={style}>
+                                            <Typography id="modal-modal-title" variant="h6" component="h2">
+                                                Are you sure you want to delete this post?
+                                            </Typography>
+                                            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                                                <button onClick={(event) => {
+                                                    handleDelete(post)
+                                                }}>delete</button>
+                                            </Typography>
+                                        </Box>
+                                    </Modal>
+                                </div>
+                                <div className="card__footer">
+
+                                    <div className="user">
+                                        <img src="https://i.pravatar.cc/40?img=1" alt="user__image" className="user__image" />
+                                        <div className="user__info">
+                                            <h5>Ford Ranger</h5>
+                                            <small>10mins ago</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <>
-                            <Card sx={{ maxWidth: 345 }}>
-                                <hr />
-                                <CardMedia
-                                    component="img"
-                                    height="140"
-                                    image="/static/images/cards/contemplative-reptile.jpg"
-                                    alt="green iguana"
-                                />
-                                <CardContent>
-                                    <Typography gutterBottom variant="h5" component="div">
-                                        {post.title}
-                                    </Typography>
-                                    <Typography variant="body2" color="text.secondary">
-                                        {post.text}
-                                    </Typography>
-                                </CardContent>
-                                <CardActions>
-                                    <Button size="small">Share</Button>
-                                    <Button size="small">Learn More</Button>
-                                </CardActions>
-                            </Card>
-                            <>
-                                <details>
-                                    <form onSubmit={(event) => { updatePost(event, post) }}>
-                                        <label>Title: <input type="text" defaultValue={post.title} onChange={handleNewTitleChange} /></label><br />
-                                        <label>Text: <textarea onChange={handleNewTextChange} placeholder="text"></textarea></label><br />
-                                        <input type="submit" value="update" />
-                                    </form>
-                                    <button onClick={(event) => {
-                                        handleDelete(post)
-                                    }}>delete</button>
-                                </details>
-                            </>
+                            <details>
+                                <form onSubmit={(event) => { updatePost(event, post) }}>
+                                    <label>Title: <input type="text" defaultValue={post.title} onChange={handleNewTitleChange} /></label><br />
+                                    <label>Text: <textarea onChange={handleNewTextChange} placeholder="text"></textarea></label><br />
+                                    <input type="submit" value="update" />
+                                </form>
+                                <button onClick={(event) => {
+                                    handleDelete(post)
+                                }}>delete</button>
+                            </details>
                         </>
-                    )
-                })}
-            </Container>
+                    </>
+                )
+            })}
+
         </div>
     )
 }
