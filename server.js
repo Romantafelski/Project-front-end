@@ -27,7 +27,7 @@ mongoose.connection.once("open", () => {
 
 
 
-app.get('https://project-3-front.herokuapp.com/:id', (req, res) => {
+app.get('/', (req, res) => {
     Schema.find({}, (err,data) => {
       res.json(data)
     })
