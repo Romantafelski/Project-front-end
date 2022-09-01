@@ -1,7 +1,17 @@
-import logo from './logo.svg';
+import * as React from 'react';
+import CssBaseline from '@mui/material/CssBaseline';
 import './App.css';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography'
+
+import Container from '@mui/material/Container';
 import { useState, useEffect } from "react"
 import axios from 'axios'
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const App = () => {
   const [newTitle, setTitle] = useState('')
@@ -14,13 +24,13 @@ const App = () => {
   async function registerUser(event) {
     event.preventDefault()
     const response = await fetch('http://localhost:3000/api/register', {
-      method:'POST',
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
         name,
-        email, 
+        email,
         password
       })
     })
@@ -78,48 +88,73 @@ const App = () => {
       })
   }
 
+  const theme = createTheme();
 
   return (
     <>
-      <h1>Blog</h1>
-      <section>
-        <h2></h2>
-        <form onSubmit={handleNewPostFormSubmit}>
-          <input type="text" onChange={handleNewTitleChange} placeholder="Title" /><br />
-          <input type="text" onChange={handleNewTextChange} placeholder="Text" /><br />
-          <input type="submit" value="Create Post" />
-        </form>
-      </section>
-      <h2>Blog Posts</h2>
-      {allPosts.map((post) => {
-        return (
-          <>
-            <p>{post.title}</p>
-            <p>{post.text}</p>
-
+      <ThemeProvider theme={theme}></ThemeProvider>
+      <CssBaseline />
+      <Container maxWidth="lg">
+        <header>Blog</header>
+        <section>
+          <h2></h2>
+          <form onSubmit={handleNewPostFormSubmit}>
+            <input type="text" onChange={handleNewTitleChange} placeholder="Title" /><br />
+            <textarea onChange={handleNewTextChange} placeholder="text"></textarea><br />
+            <input type="submit" value="Create Post" />
+          </form>
+        </section>
+        <h2>Blog Posts</h2>
+        
+        {allPosts.map((post) => {
+          return (
             <>
-            <details>
-              <form onSubmit={(event) => { updatePost(event, post) }}>
-                <label>Title: <input type="text" defaultValue={post.title} onChange={handleNewTitleChange} /></label><br />
-                <label>Text: <input type="text" defaultValue={post.text} onChange={handleNewTextChange} /></label><br />
-                <input type="submit" value="update" />
-              </form>
-              <button onClick={(event) => {
-                handleDelete(post)
-              }}>delete</button>
-              </details>
+              <Card sx={{ maxWidth: 345 }}>
+                <CardMedia
+                  component="img"
+                  height="140"
+                  image="/static/images/cards/contemplative-reptile.jpg"
+                  alt="green iguana"
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="div">
+                    {post.title}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    {post.text}
+                  </Typography>
+                </CardContent>
+                <CardActions>
+                  <Button size="small">Share</Button>
+                  <Button size="small">Learn More</Button>
+                </CardActions>
+              </Card>
+              <>
+                <details>
+                  <form onSubmit={(event) => { updatePost(event, post) }}>
+                    <label>Title: <input type="text" defaultValue={post.title} onChange={handleNewTitleChange} /></label><br />
+                    <label>Text: <textarea onChange={handleNewTextChange} placeholder="text"></textarea></label><br />
+                    <input type="submit" value="update" />
+                  </form>
+                  <button onClick={(event) => {
+                    handleDelete(post)
+                  }}>delete</button>
+                </details>
+              </>
             </>
-          </>
-        )
-      })}
+          )
+        })}
+      </Container>
       <div>
-        <h1>Register</h1>
-        <form onSubmit={registerUser}>
-          <input value={name} onChange={(e) => setName(e.target.value)} type="text" placeholder='Name'/><br/>
-          <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder='Email'/><br/>
-          <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder='Password'/><br/>
-          <input type="submit" value="Register"/>
-        </form>
+        <details>
+          <h1>Register</h1>
+          <form onSubmit={registerUser}>
+            <input value={name} onChange={(e) => setName(e.target.value)} type="text" placeholder='Name' /><br />
+            <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder='Email' /><br />
+            <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder='Password' /><br />
+            <input type="submit" value="Register" />
+          </form>
+        </details>
       </div>
     </>
   )
