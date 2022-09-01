@@ -1,3 +1,31 @@
-body {
-  background-color: rgb(111, 111, 242);
+html {
+  height: 100%;
 }
+
+body {
+  background-image: linear-gradient(to bottom left, #012d44, #01576b, #00739d, rgb(4, 177, 216));
+  }
+
+  .form1 {
+    margin: 2vw ;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 2vw;
+    color: rgb(234, 234, 234);
+  }
+
+  .textBox1 {
+    margin-left: 1.7vw;
+  }
+
+  .textBox2 {
+    margin-left: 1.9vw;
+  }
+
+
+
+  .users {
+    text-align: center;
+    color: rgb(234, 234, 234);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  }
+
