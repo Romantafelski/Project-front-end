@@ -15,7 +15,7 @@ const App = () => {
 
   async function registerUser(event) {
     event.preventDefault()
-    const response = await fetch('https://whispering-crag-00461.herokuapp.com/api/register', {
+    const response = await fetch('https://shrouded-journey-37658.herokuapp.com/blogs', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
