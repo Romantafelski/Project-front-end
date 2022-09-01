@@ -5,6 +5,7 @@ import {useState, useEffect} from "react"
 import axios from 'axios';
 
 
+
 const App = () => {
   
   let [memes, setMemes] = useState([])
@@ -26,14 +27,14 @@ const App = () => {
 
   const handleMemeCreation = (event) => {
     event.preventDefault()
-    axios.post(`http://localhost:3000/memes/${memes._id}`, 
+    axios.post(`http://localhost:3001/${memes._id}`, 
     {
       title: newTitle,
       text: newText,
       image: newImage
     }
     ).then(() => {
-      axios.get("http://localhost:3000/memes").then((response=> {
+      axios.get("http://localhost:3001").then((response=> {
         setMemes(response.data)
       }))
     })
