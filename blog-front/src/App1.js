@@ -51,37 +51,37 @@ const App = () => {
 
   const handleNewPostFormSubmit = (event) => {
     event.preventDefault()
-    axios.post('https://shrouded-journey-37658.herokuapp.com/blogs', {
+    axios.post('https://whispering-crag-00461.herokuapp.com/blogs', {
       title: newTitle,
       text: newText
     }).then(() => {
-      axios.get('https://shrouded-journey-37658.herokuapp.com/blogs').then((response) => {
+      axios.get('https://whispering-crag-00461.herokuapp.com/blogs').then((response) => {
         setAllPost(response.data)
       })
     })
   }
 
   useEffect(() => {
-    axios.get('https://shrouded-journey-37658.herokuapp.com/blogs').then((response) => {
+    axios.get('https://whispering-crag-00461.herokuapp.com/blogs').then((response) => {
       setAllPost(response.data)
     })
   })
 
   const handleDelete = (postData) => {
-    axios.delete(`https://shrouded-journey-37658.herokuapp.com/blogss/${postData._id}`).then((response) => {
+    axios.delete(`https://whispering-crag-00461.herokuapp.com/${postData._id}`).then((response) => {
       setAllPost(response.data)
     })
   }
 
   const updatePost = (e, post) => {
     e.preventDefault()
-    axios.put(`https://shrouded-journey-37658.herokuapp.com/blogs/${post._id}`,
+    axios.put(`https://whispering-crag-00461.herokuapp.com/blogs/${post._id}`,
       {
         title: newTitle,
         text: newText
 
       }).then(() => {
-        axios.get('https://shrouded-journey-37658.herokuapp.com/blogs').then((response) => {
+        axios.get('https://whispering-crag-00461.herokuapp.com/blogs').then((response) => {
 
           setAllPost(response.data)
         })
