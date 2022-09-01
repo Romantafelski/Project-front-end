@@ -27,14 +27,14 @@ mongoose.connection.once("open", () => {
 
 
 
-app.get('/:id', (req, res) => {
+app.get('https://project-3-front.herokuapp.com//:id', (req, res) => {
     Schema.find({}, (err,data) => {
       res.json(data)
     })
   })
   
 
-  app.post('/', (req, res) => {
+  app.post('https://project-3-front.herokuapp.com//', (req, res) => {
     Schema.create(req.body, (err, data)=>{
       res.json(data)
     })
@@ -42,21 +42,21 @@ app.get('/:id', (req, res) => {
   
 
 
-  app.get('/', (req, res) => {
+  app.get('https://project-3-front.herokuapp.com//', (req, res) => {
     Schema.find({}, (err,data) => {
       res.json(data)
     })
   })
   
 
-  app.delete('/:id', (req, res) => {
+  app.delete('https://project-3-front.herokuapp.com//:id', (req, res) => {
     Schema.findByIdAndRemove(req.params.id, (err, data) => {
       res.json(data)
     })
   })
   
 
-  app.put('/:id', (req, res) => {
+  app.put('https://project-3-front.herokuapp.com//:id', (req, res) => {
     Schema.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, data) => {
       res.json(data)
     })
