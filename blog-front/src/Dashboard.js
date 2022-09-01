@@ -32,7 +32,6 @@ const Dashboard = () => {
 
     const [newTitle, setTitle] = useState('')
     const [newText, setText] = useState('')
-    const [newImage, setImage] = useState('')
     const [allPosts, setAllPost] = useState([])
     const [open, setOpen] = React.useState(false);
     const [openEdit, setOpenEdit] = React.useState(false);
@@ -40,12 +39,10 @@ const Dashboard = () => {
 
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-
     const handleOpenEdit = () => setOpenEdit(true);
     const handleCloseEdit = () => setOpenEdit(false);
-
-    const handleOpenDelete = () => setOpenEdit(true);
-    const handleCloseDelete = () => setOpenEdit(false);
+    const handleOpenDelete = () => setOpenDelete(true);
+    const handleCloseDelete = () => setOpenDelete(false);
 
     const handleNewTitleChange = (event) => {
         setTitle(event.target.value);
@@ -53,9 +50,6 @@ const Dashboard = () => {
 
     const handleNewTextChange = (event) => {
         setText(event.target.value)
-    }
-    const handleNewImageChange = (event) => {
-        setImage(event.target.value)
     }
 
 
@@ -102,38 +96,32 @@ const Dashboard = () => {
     return (
         <div>
             <div>
-                <ul>
-                    <Button onClick={handleOpen}>Create Post</Button>
-                    <Modal
-                        open={open}
-                        onClose={handleClose}
-                        aria-labelledby="modal-modal-title"
-                        aria-describedby="modal-modal-description"
-                    >
-                        <Box sx={style}>
-                            <Typography id="modal-modal-title" variant="h6" component="h2">
-                                Make a blog post
-                            </Typography>
-                            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                                <Form onSubmit={handleNewPostFormSubmit}>
-                                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                        <Form.Label>image</Form.Label><br />
-                                        <Form.Control type="text" onChange={e => setImage(e.target.value)} value={newImage} placeholder="Title" />
-                                    </Form.Group>
-                                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                        <Form.Label>Title</Form.Label><br />
-                                        <Form.Control type="text" onChange={e => setTitle(e.target.value)} value={newTitle} placeholder="Title" />
-                                    </Form.Group>
-                                    <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                                        <Form.Label>Text</Form.Label><br />
-                                        <Form.Control as="textarea" rows={3} onChange={e => setText(e.target.value)} value={newText} placeholder="text" />
-                                    </Form.Group>
-                                    <input type="submit" value="Create Post" />
-                                </Form>
-                            </Typography>
-                        </Box>
-                    </Modal>
-                </ul>
+                <Button onClick={handleOpen}>Create Post</Button>
+                <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                >
+                    <Box sx={style}>
+                        <Typography id="modal-modal-title" variant="h6" component="h2">
+                            Make a blog post
+                        </Typography>
+                        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                        <Form onSubmit={handleNewPostFormSubmit}>
+                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                        <Form.Label>Title</Form.Label><br />
+                        <Form.Control type="text" onChange={e => setTitle(e.target.value)} value={newTitle} placeholder="Title" />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                        <Form.Label>Text</Form.Label><br />
+                        <Form.Control as="textarea" rows={3} onChange={e => setText(e.target.value)} value={newText} placeholder="text" />
+                    </Form.Group>
+                    <input type="submit" value="Create Post" />
+                </Form>
+                        </Typography>
+                    </Box>
+                </Modal>
             </div>
             <section>
             </section>
@@ -205,23 +193,23 @@ const Dashboard = () => {
                                 </div>
                             </div>
                         </div>
-                        <>
-                            <details>
-                                <form onSubmit={(event) => { updatePost(event, post) }}>
-                                    <label>Title: <input type="text" defaultValue={post.title} onChange={handleNewTitleChange} /></label><br />
-                                    <label>Text: <textarea onChange={handleNewTextChange} placeholder="text"></textarea></label><br />
-                                    <input type="submit" value="update" />
-                                </form>
-                                <button onClick={(event) => {
-                                    handleDelete(post)
-                                }}>delete</button>
-                            </details>
+                            <>
+                                <details>
+                                    <form onSubmit={(event) => { updatePost(event, post) }}>
+                                        <label>Title: <input type="text" defaultValue={post.title} onChange={handleNewTitleChange} /></label><br />
+                                        <label>Text: <textarea onChange={handleNewTextChange} placeholder="text"></textarea></label><br />
+                                        <input type="submit" value="update" />
+                                    </form>
+                                    <button onClick={(event) => {
+                                        handleDelete(post)
+                                    }}>delete</button>
+                                </details>
+                            </>
                         </>
-                    </>
-                )
-            })}
-
+                    )
+                })}
         </div>
+        
     )
 }
 
