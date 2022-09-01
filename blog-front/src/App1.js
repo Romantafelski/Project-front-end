@@ -55,14 +55,14 @@ const App = () => {
       title: newTitle,
       text: newText
     }).then(() => {
-      axios.get('https://whispering-crag-00461.herokuapp.com/blogs').then((response) => {
+      axios.get('https://pacific-savannah-73208.herokuapp.com/').then((response) => {
         setAllPost(response.data)
       })
     })
   }
 
   useEffect(() => {
-    axios.get('https://whispering-crag-00461.herokuapp.com/blogs').then((response) => {
+    axios.get('https://pacific-savannah-73208.herokuapp.com/').then((response) => {
       setAllPost(response.data)
     })
   })
@@ -81,7 +81,7 @@ const App = () => {
         text: newText
 
       }).then(() => {
-        axios.get('https://whispering-crag-00461.herokuapp.com/blogs').then((response) => {
+        axios.get('https://pacific-savannah-73208.herokuapp.com/').then((response) => {
 
           setAllPost(response.data)
         })

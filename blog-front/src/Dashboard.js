@@ -59,34 +59,34 @@ const Dashboard = () => {
             title: newTitle,
             text: newText
         }).then(() => {
-            axios.get('https://whispering-crag-00461.herokuapp.com/blogs').then((response) => {
+            axios.get('https://pacific-savannah-73208.herokuapp.com/blogs').then((response) => {
                 setAllPost(response.data)
             })
         })
     }
 
     useEffect(() => {
-        axios.get('https://whispering-crag-00461.herokuapp.com/blogs').then((response) => {
+        axios.get('https://pacific-savannah-73208.herokuapp.com/blogs').then((response) => {
             setAllPost(response.data)
         })
     })
 
 
     const handleDelete = (postData) => {
-        axios.delete(`https://whispering-crag-00461.herokuapp.com/blogs/${postData._id}`).then((response) => {
+        axios.delete(`https://pacific-savannah-73208.herokuapp.com/blogs/${postData._id}`).then((response) => {
             setAllPost(response.data)
         })
     }
 
     const updatePost = (e, post) => {
         e.preventDefault()
-        axios.put(`https://whispering-crag-00461.herokuapp.com/blogs${post._id}`,
+        axios.put(`https://pacific-savannah-73208.herokuapp.com/blogs/${post._id}`,
             {
                 title: newTitle,
                 text: newText
 
             }).then(() => {
-                axios.get('https://whispering-crag-00461.herokuapp.com/blogs').then((response) => {
+                axios.get('https://pacific-savannah-73208.herokuapp.com//blogs').then((response) => {
 
                     setAllPost(response.data)
                 })
