@@ -27,14 +27,14 @@ mongoose.connection.once("open", () => {
 
 
 
-app.get('https://project-3-front.herokuapp.com/:id', (req, res) => {
+app.get('https://pacific-savannah-73208.herokuapp.com/', (req, res) => {
     Schema.find({}, (err,data) => {
       res.json(data)
     })
   })
   
 
-  app.post('https://project-3-front.herokuapp.com', (req, res) => {
+  app.post('https://pacific-savannah-73208.herokuapp.com/', (req, res) => {
     Schema.create(req.body, (err, data)=>{
       res.json(data)
     })
@@ -42,14 +42,14 @@ app.get('https://project-3-front.herokuapp.com/:id', (req, res) => {
   
   
 
-  app.delete('https://project-3-front.herokuapp.com/:id', (req, res) => {
+  app.delete('https://pacific-savannah-73208.herokuapp.com//:id', (req, res) => {
     Schema.findByIdAndRemove(req.params.id, (err, data) => {
       res.json(data)
     })
   })
   
 
-  app.put('https://project-3-front.herokuapp.com/:id', (req, res) => {
+  app.put('https://pacific-savannah-73208.herokuapp.com//:id', (req, res) => {
     Schema.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, data) => {
       res.json(data)
     })
