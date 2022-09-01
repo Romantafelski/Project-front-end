@@ -15,7 +15,7 @@ const App = () => {
 
   async function registerUser(event) {
     event.preventDefault()
-    const response = await fetch('http://localhost:3000/api/register', {
+    const response = await fetch('https://shrouded-journey-37658.herokuapp.com/api/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

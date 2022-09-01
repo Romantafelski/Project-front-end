@@ -51,37 +51,37 @@ const App = () => {
 
   const handleNewPostFormSubmit = (event) => {
     event.preventDefault()
-    axios.post('http://localhost:3000/Blogs', {
+    axios.post('https://shrouded-journey-37658.herokuapp.com/blogs', {
       title: newTitle,
       text: newText
     }).then(() => {
-      axios.get('http://localhost:3000/Blogs').then((response) => {
+      axios.get('https://shrouded-journey-37658.herokuapp.com/blogs').then((response) => {
         setAllPost(response.data)
       })
     })
   }
 
   useEffect(() => {
-    axios.get('http://localhost:3000/Blogs').then((response) => {
+    axios.get('https://shrouded-journey-37658.herokuapp.com/blogs').then((response) => {
       setAllPost(response.data)
     })
   })
 
   const handleDelete = (postData) => {
-    axios.delete(`http://localhost:3000/blogs/${postData._id}`).then((response) => {
+    axios.delete(`https://shrouded-journey-37658.herokuapp.com/blogss/${postData._id}`).then((response) => {
       setAllPost(response.data)
     })
   }
 
   const updatePost = (e, post) => {
     e.preventDefault()
-    axios.put(`http://localhost:3000/blogs/${post._id}`,
+    axios.put(`https://shrouded-journey-37658.herokuapp.com/blogs/${post._id}`,
       {
         title: newTitle,
         text: newText
 
       }).then(() => {
-        axios.get('http://localhost:3000/blogs').then((response) => {
+        axios.get('https://shrouded-journey-37658.herokuapp.com/blogs').then((response) => {
 
           setAllPost(response.data)
         })
