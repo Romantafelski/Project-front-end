@@ -71,11 +71,11 @@ const App = () => {
 
   return (
     <div>
-    <h1>Hello World</h1>
-    <form onSubmit={handleMemeCreation}>
-    Title: <input type="text" onChange={handleTitleChange}/>
-    Text: <input type="text" onChange={handleTextChange}/><br/>
-    Image: <input type="text" onChange={handleImageChange}/><br/>
+    <h1 className="users">User's Blog</h1>
+    <form className="form1" onSubmit={handleMemeCreation}>
+    <h4>Title: <input className='textBox1' type="text" onChange={handleTitleChange}/></h4>
+    <h4>Text: <input className='textBox2' type="text" onChange={handleTextChange}/><br/></h4>
+    <h4>Image: <input className='textBox3' type="text" onChange={handleImageChange}/><br/></h4>
     <input type="submit" value="Submit Meme"/>
     </form>
     {memes.map((memes) => {
@@ -89,8 +89,8 @@ const App = () => {
             <div>
               <form onSubmit={() => {{editMemes(memes)}}}>
               Title: <input type="text" onKeyUp={handleTitleChange}/>
-              Text: <input type="text" onKeyUp={handleTextChange}/><br/>
-              Image: <input type="text" onKeyUpe={handleImageChange}/><br/>
+              Text: <input type="text" onKeyUp={handleTextChange}/>
+              Image: <input type="text" onKeyUpe={handleImageChange}/>
               <input type="submit" value="submit changes"/>
               </form>
             </div>
